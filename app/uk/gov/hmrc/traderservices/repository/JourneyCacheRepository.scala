@@ -16,13 +16,14 @@
 
 package uk.gov.hmrc.traderservices.repository
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import play.modules.reactivemongo.ReactiveMongoComponent
 import uk.gov.hmrc.cache.repository.CacheMongoRepository
 import uk.gov.hmrc.traderservices.wiring.AppConfig
 
 import scala.concurrent.ExecutionContext
 
+@Singleton
 class JourneyCacheRepository @Inject() (appConfig: AppConfig, mongo: ReactiveMongoComponent)(implicit
   ec: ExecutionContext
 ) extends CacheMongoRepository("journeys", appConfig.mongoSessionExpiryTime)(mongo.mongoConnector.db, ec)
